@@ -45,7 +45,24 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        String l="";
+        String nom = replaceAccents(this.nom);
+        String prenom = replaceAccents(this.prenom);
+        if (nom.length()>0) {
+            if (nom.length()<=6) {
+                l=l + nom;
+            }
+            else {
+                nom = nom.substring(0,6);
+                l=l + nom;
+            }
+        }
+        l=l+"_";
+        if (prenom.length()>0){
+           l=l + prenom.charAt(0);
+        }
+        l=l.toLowerCase();
+        return "" + l;// à compléter
     }
 
     /**
@@ -54,25 +71,42 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return nom;// à compléter
     }
-
+  
     /**
      * Lecture du prénom de l'auditeur.
      * 
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return prenom;// à compléter
     }
 
+    private String replaceAccents(String s){
+        s = s.replaceAll("[èéêë]","e");
+        s = s.replaceAll("[ûù]","u");
+        s = s.replaceAll("[ïî]","i");
+        s = s.replaceAll("[àâ]","a");
+        s = s.replaceAll("Ô","o");
+    
+        s = s.replaceAll("[ÈÉÊË]","E");
+        s = s.replaceAll("[ÛÙ]","U");
+        s = s.replaceAll("[ÏÎ]","I");
+        s = s.replaceAll("[ÀÂ]","A");
+        s = s.replaceAll("Ô","O");
+        s = s.replaceAll("-","_");
+        s = s.replaceAll(" ","_");
+        return s;
+    }
+    
     /**
      * Lecture du matricule de l'auditeur.
      * 
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return matricule;// à compléter
     }
 
     /**
